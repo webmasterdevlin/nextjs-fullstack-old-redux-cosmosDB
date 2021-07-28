@@ -1,9 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { AppBar, Box, createStyles, Link, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-
-import TotalOfCharacters from "./TotalOfCharacters";
 
 const NavigationBar = () => {
   const classes = useStyles();
