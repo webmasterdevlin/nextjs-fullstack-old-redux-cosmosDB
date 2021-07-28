@@ -3,7 +3,7 @@ import { IVillainModel } from "src/models/client/villainModel";
 export interface IVillainState {
   readonly villains: IVillainModel[];
   readonly villain: IVillainModel;
-  readonly isLoading: boolean;
+  readonly loading: boolean;
 }
 
 export type ApiResponse = Record<string, any>;

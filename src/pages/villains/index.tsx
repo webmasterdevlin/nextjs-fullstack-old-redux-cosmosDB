@@ -8,8 +8,11 @@ import {
   softDeleteVillain,
 } from "src/features/villains/villainActions";
 import { IVillainModel } from "src/models/client/villainModel";
+import { createStyles, makeStyles, withStyles } from "@material-ui/styles";
 
-interface IState {}
+interface IState {
+  counter: string;
+}
 
 interface IProps {
   villains: IVillainModel[];
@@ -35,7 +38,7 @@ export class VillainsPage extends Component<IProps, IState> {
   }
 }
 const mapStateToProps = (state: RootState) => {
-  return state.villain;
+  return { ...state };
 };
 
 const mapDispatchToProps = (dispatch: MapDispatchToProps<any, any>) => {
@@ -48,4 +51,15 @@ const mapDispatchToProps = (dispatch: MapDispatchToProps<any, any>) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(VillainsPage);
+const styles = (theme) => ({
+  button: {
+    margin: "0 0.5rem",
+    "&:focus": {
+      outline: "none",
+    },
+  },
+});
+
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(VillainsPage)
+);

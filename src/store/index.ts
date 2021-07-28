@@ -13,13 +13,13 @@ import { villainReducer } from "src/features/villains/villainReducer";
 import { villainSaga } from "src/features/villains/villainSaga";
 
 export interface IApplicationState {
-  hero: IHeroState;
-  villain: IVillainState;
+  heroStore: IHeroState;
+  villainStore: IVillainState;
 }
 
 const rootReducer = combineReducers<IApplicationState>({
-  hero: heroReducer,
-  villain: villainReducer,
+  heroStore: heroReducer,
+  villainStore: villainReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

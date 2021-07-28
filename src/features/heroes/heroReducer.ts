@@ -4,7 +4,7 @@ import { Action } from "redux";
 export const initialState: IHeroState = {
   heroes: [],
   hero: null,
-  isLoading: false,
+  loading: false,
 };
 
 interface IAction extends Action {

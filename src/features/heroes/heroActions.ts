@@ -79,8 +79,7 @@ export const updateHero: ActionCreator<any> = (hero: IHeroModel) => {
   };
 };
 
-export const softDeleteHero: ActionCreator<any> = (id: string) => {
-  return (dispatch: Dispatch) => {
-    dispatch({ type: HeroActionTypes.REMOVE_HERO_SUCCESS, payload: id });
-  };
-};
+export const softDeleteHero = (id: string) => ({
+  type: HeroActionTypes.REMOVE_HERO_SUCCESS,
+  payload: id,
+});
