@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect, DispatchProp, MapDispatchToProps } from "react-redux";
+import { connect, MapDispatchToProps } from "react-redux";
 import { RootState } from "src/store";
 import {
   addHero,
@@ -20,8 +20,18 @@ interface IProps {
 }
 
 export class HeroesPage extends Component<IProps, IState> {
+  async componentDidMount(): Promise<void> {
+    await this.props.fetchHeroes();
+  }
+
   render() {
-    return <div>{this.props.heroes}</div>;
+    return (
+      <div>
+        {this.props.heroes?.map((hero) => (
+          <h1 key={hero.id}>{hero.firstName}</h1>
+        ))}
+      </div>
+    );
   }
 }
 const mapStateToProps = (state: RootState) => {
