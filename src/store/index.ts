@@ -1,4 +1,3 @@
-import logger from "redux-logger";
 import {
   combineReducers,
   createStore,
@@ -6,40 +5,37 @@ import {
   compose,
   Store,
 } from "redux";
-
+import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import thunk from "redux-thunk";
 import { IHeroState } from "../features/heroes/heroTypes";
 import { heroReducer } from "../features/heroes/heroReducer";
 import { Context, createWrapper } from "next-redux-wrapper";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 export interface IApplicationState {
-  heroReducer: IHeroState;
+  hero: IHeroState;
 }
 
 const rootReducer = combineReducers<IApplicationState>({
-  heroReducer,
+  hero: heroReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [thunk, sagaMiddleware, logger]; // side-effect middleware
 
-let store: Store<IApplicationState, any>;
-
 // create a makeStore function
 const makeStore = (context: Context) => {
-  if (typeof window !== "undefined") {
-    // @ts-ignore
-    const withDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(...middleware))
+  );
 
-    return createStore(
-      rootReducer,
-      withDevTools(applyMiddleware(...middleware))
-    );
-  }
+  // sagaMiddleware.run(villainSaga);
+  return store;
 };
-
-// sagaMiddleware.run(villainSaga);
 
 // export an assembled wrapper
 export const wrapper = createWrapper<Store<IApplicationState>>(makeStore, {

@@ -1,8 +1,16 @@
 import { IHeroState, HeroActionTypes } from "./heroTypes";
 import { Action } from "redux";
 
-const initialState: IHeroState = {
-  heroes: [],
+export const initialState: IHeroState = {
+  heroes: [
+    {
+      id: "232sfbgsdljf",
+      firstName: "Devlin",
+      lastName: "D.",
+      house: "house",
+      knownAs: "",
+    },
+  ],
   hero: null,
   isLoading: false,
 };
