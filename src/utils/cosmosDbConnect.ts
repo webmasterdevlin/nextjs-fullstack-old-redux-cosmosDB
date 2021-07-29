@@ -5,7 +5,7 @@ export default async function initializeDbContainers(
   partitionNameKey: string
 ): Promise<Container> {
   const { endpoint, key, databaseId, containerId } =
-    getConfig().publicRuntimeConfig.cosmos;
+    getConfig().serverRuntimeConfig.cosmos;
 
   const client = new CosmosClient({
     endpoint,

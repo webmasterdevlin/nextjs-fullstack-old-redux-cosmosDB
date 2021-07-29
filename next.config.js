@@ -3,19 +3,13 @@ module.exports = {
   serverRuntimeConfig: {
     // Will only be available on the server side
     cosmos: {
-      endpoint: "https://nextjs-cosmos.documents.azure.com:443/",
-      key: "ZHl0CFmHKfXzz3zezr2BHKY9yxGXwKtYmA1YUp3HJ0y5NNhKHly0V18L1yQY8EkV1BwwOiXfkM7vfAMyznLoRA==",
-      databaseId: "mydb",
-      containerId: "mycontainer",
+      endpoint: process.env.COSMOS_ENDPOINT,
+      key: process.env.COSMOS_KEY,
+      databaseId: process.env.COSMOS_DATABASE_ID,
+      containerId: process.env.COSMOS_CONTAINER_ID,
     },
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
-    cosmos: {
-      endpoint: "https://nextjs-cosmos.documents.azure.com:443/",
-      key: "ZHl0CFmHKfXzz3zezr2BHKY9yxGXwKtYmA1YUp3HJ0y5NNhKHly0V18L1yQY8EkV1BwwOiXfkM7vfAMyznLoRA==",
-      databaseId: "mydb",
-      containerId: "mycontainer",
-    },
   },
 };
