@@ -3,15 +3,15 @@ GET https://jsonplaceholder.typicode.com/posts/
 Accept: application/json
 
 ###
-GET http://localhost:3000/api/heroes
+GET http://localhost:3000/api/villains
 Accept: application/json
 
 ###
-DELETE http://localhost:3000/api/heroes/97e5caea-48ff-4ca9-b75e-80517ff6ee51
+DELETE http://localhost:3000/api/villains/aa81aae4-0416-471e-8a75-8f24abfdf629
 Accept: application/json
 
 ###
-POST http://localhost:3000/api/heroes
+POST http://localhost:3000/api/villains
 Content-Type: application/json
 Accept: application/json
 
@@ -23,11 +23,11 @@ Accept: application/json
 }
 
 ###
-PUT http://localhost:3000/api/heroes/0439f4ad-5923-465a-99b6-73efe32db266
+PUT http://localhost:3000/api/villains/aa81aae4-0416-471e-8a75-8f24abfdf629
 Content-Type: application/json
 
 {
-  "id": "0439f4ad-5923-465a-99b6-73efe32db266",
+  "id": "aa81aae4-0416-471e-8a75-8f24abfdf629",
   "firstName": "John - Updated",
   "lastName": "Doe - Updated",
   "knownAs": "JD - Updated",

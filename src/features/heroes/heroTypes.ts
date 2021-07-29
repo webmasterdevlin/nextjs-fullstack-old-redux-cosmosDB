@@ -1,4 +1,4 @@
-import { IHeroModel } from "src/models/client/heroModel";
+import { IHeroModel } from "src/models/heroModel";
 
 export interface IHeroState {
   readonly heroes: IHeroModel[];

@@ -2,7 +2,7 @@ import { Dispatch, ActionCreator, Action } from "redux";
 import { HeroActionTypes } from "./heroTypes";
 import { ThunkAction, ThunkDispatch } from "redux-thunk"; // Too verbose to use. Any is good enough
 import { EndPoints } from "src/axios/api-config";
-import { IHeroModel } from "src/models/client/heroModel";
+import { IHeroModel } from "src/models/heroModel";
 import {
   getAxios,
   deleteAxios,

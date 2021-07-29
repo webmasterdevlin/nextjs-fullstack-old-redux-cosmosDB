@@ -13,7 +13,7 @@ import Box from "@material-ui/core/Box/Box";
 import Button from "@material-ui/core/Button/Button";
 import { Theme } from "@material-ui/core";
 
-import { IVillainModel } from "src/models/client/villainModel";
+import { IVillainModel } from "src/models/villainModel";
 import Layout from "src/components/Layout";
 import TitleBar from "src/components/TitleBar";
 import FormSubmission from "src/components/FormSubmission";

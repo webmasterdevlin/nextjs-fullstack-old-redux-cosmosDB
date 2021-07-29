@@ -1,4 +1,4 @@
-import { IVillainModel } from "src/models/client/villainModel";
+import { IVillainModel } from "src/models/villainModel";
 
 export interface IVillainState {
   readonly villains: IVillainModel[];

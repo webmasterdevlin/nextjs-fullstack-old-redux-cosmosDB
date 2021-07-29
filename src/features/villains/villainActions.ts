@@ -2,7 +2,7 @@
 import { Action } from "redux";
 import { VillainActionTypes } from "./villainTypes";
 
-import { IVillainModel } from "src/models/client/villainModel";
+import { IVillainModel } from "src/models/villainModel";
 
 export interface IAction extends Action {
   readonly payload?: any;
