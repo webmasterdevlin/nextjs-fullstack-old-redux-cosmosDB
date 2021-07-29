@@ -23,7 +23,7 @@ Accept: application/json
 }
 
 ###
-PUT http://localhost:3000/api/heroes/058cf4cf-cdb7-4b7f-acc9-ad0f2f9869f6
+PUT http://localhost:3000/api/heroes/db8a0815-bce4-4335-939c-208f1dee985a
 Content-Type: application/json
 
 {

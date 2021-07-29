@@ -5,7 +5,7 @@ import { CssBaseline, ThemeProvider } from "@material-ui/core";
 
 import NavigationBar from "src/components/NavigationBar";
 import theme from "src/styles/theme";
-import { wrapper } from "../store";
+import { wrapper } from "src/store";
 
 type Props = {
   Component: React.Component;

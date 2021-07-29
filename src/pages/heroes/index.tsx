@@ -18,23 +18,25 @@ import Layout from "src/components/Layout";
 import TitleBar from "src/components/TitleBar";
 import FormSubmission from "src/components/FormSubmission";
 import UpdateUiLabel from "src/components/UpdateUiLabel";
+import { IHeroState } from "src/features/heroes/heroTypes";
 
+/*local state's shape*/
 interface IState {
   counter: string;
 }
 
+/*props' shape*/
 interface IProps {
   classes: any;
-  heroes: IHeroModel[];
-  hero: IHeroModel;
-  loading: boolean;
+  heroStore: IHeroState;
   fetchHeroes: () => Promise<void>;
   removeHero: (id: string) => Promise<void>;
   addHero: (values: IHeroModel) => Promise<void>;
   softDeleteHero: (id: string) => Promise<void>;
 }
-
+/* You can't use React Hooks in Class based components */
 export class HeroesPage extends Component<IProps, IState> {
+  /*local state*/
   state = {
     counter: "0",
   };
@@ -44,18 +46,20 @@ export class HeroesPage extends Component<IProps, IState> {
   }
 
   render() {
+    const { heroes, loading } = this.props.heroStore;
+
     return (
-      <Layout title={"Next Redux Toolkit + TypeOrm - Heroes Page"}>
+      <Layout title={"Next Old Redux + TypeOrm - Heroes Page"}>
         <TitleBar title={"Super Heroes Page"} />
         <FormSubmission handleCreateAction={this.props.addHero} />
         <UpdateUiLabel />
         <>
-          {this.props.loading ? (
+          {loading ? (
             <Typography data-testid={"loading"} variant={"h2"}>
               Loading.. Please wait..
             </Typography>
           ) : (
-            this.props.heroes?.map((h) => (
+            heroes?.map((h) => (
               <Box
                 key={h.id}
                 mb={2}
@@ -103,7 +107,7 @@ export class HeroesPage extends Component<IProps, IState> {
             ))
           )}
         </>
-        {this.props.heroes.length === 0 && !this.props.loading && (
+        {heroes.length === 0 && !loading && (
           <Button
             data-testid={"refetch-button"}
             onClick={this.props.fetchHeroes}
@@ -120,9 +124,7 @@ export class HeroesPage extends Component<IProps, IState> {
 }
 const mapStateToProps = (state: RootState) => {
   return {
-    heroes: state.heroStore.heroes,
-    hero: state.heroStore.hero,
-    loading: state.heroStore.loading,
+    heroStore: state.heroStore,
   };
 };
 

@@ -7,7 +7,7 @@ GET http://localhost:3000/api/villains
 Accept: application/json
 
 ###
-DELETE http://localhost:3000/api/villains/6457a746-8067-422b-bba7-c6ddb675706e
+DELETE http://localhost:3000/api/villains/fbc3c2b7-d672-4533-b77b-05d6c62cb617
 Accept: application/json
 
 ###
