@@ -1,4 +1,4 @@
-import { ApiResponse } from "src/features/villains/villainTypes";
+import { ApiResponse } from "src/features/heroes/heroTypes";
 
 export interface IVillainModel extends ApiResponse {
   id: string;

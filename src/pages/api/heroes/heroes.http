@@ -7,7 +7,7 @@ GET http://localhost:3000/api/heroes
 Accept: application/json
 
 ###
-DELETE http://localhost:3000/api/heroes/6457a746-8067-422b-bba7-c6ddb675706e
+DELETE http://localhost:3000/api/heroes/97e5caea-48ff-4ca9-b75e-80517ff6ee51
 Accept: application/json
 
 ###
@@ -23,7 +23,7 @@ Accept: application/json
 }
 
 ###
-PUT http://localhost:3000/api/heroes/db8a0815-bce4-4335-939c-208f1dee985a
+PUT http://localhost:3000/api/heroes/5e7e9550-889b-4fbf-8b5c-ab5619a0ad70
 Content-Type: application/json
 
 {

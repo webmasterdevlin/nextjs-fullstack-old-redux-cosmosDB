@@ -1,58 +1,62 @@
-import boom from "@hapi/boom";
-import { getRepository } from "typeorm";
+import { IHeroModel } from "src/models/client/heroModel";
+import initializeDbContainers from "src/utils/cosmosDbConnect";
 
-import { HeroEntity } from "src/models/api/heroEntity";
+const partitionNameKey = "Heroes";
 
-export const heroFind = async (): Promise<HeroEntity[]> => {
+export const heroFind = async (): Promise<IHeroModel[]> => {
   try {
-    let db = getRepository(HeroEntity);
-    return await db.find();
+    const container = await initializeDbContainers(partitionNameKey);
+    const { resources } = await container.items
+      .readAll<IHeroModel>()
+      .fetchAll();
+
+    return resources;
   } catch (e) {
-    throw boom.boomify(e);
+    throw e;
   }
 };
 
 export const heroFindByIdAndRemove = async (id: string): Promise<void> => {
   try {
-    let db = getRepository(HeroEntity);
-    await db.delete({ id });
+    const container = await initializeDbContainers(partitionNameKey);
+    await container.item(id).delete();
   } catch (e) {
-    throw boom.boomify(e);
+    throw e;
   }
 };
 
-export const heroSave = async (body: HeroEntity): Promise<HeroEntity> => {
+export const heroSave = async (body: IHeroModel): Promise<IHeroModel> => {
   try {
-    let db = getRepository(HeroEntity);
-    return await db.save(body);
+    const container = await initializeDbContainers(partitionNameKey);
+    const { resource } = await container.items.create<IHeroModel>(body);
+
+    return resource;
   } catch (e) {
-    console.log(e);
-    throw boom.boomify(e);
+    throw e;
   }
 };
 
 export const heroFindByIdAndUpdate = async (
   id: string,
-  body: HeroEntity
+  body: IHeroModel
 ): Promise<void> => {
   try {
-    let db = getRepository(HeroEntity);
-    const heroToUpdate: HeroEntity = await db.findOne({
-      id,
-    });
-    let updated: HeroEntity = Object.assign(heroToUpdate, body);
-    // based on TypeORM's docs use db.save instead of db.update
-    await db.save(updated);
+    console.log(JSON.stringify(id, null, 2));
+    console.log(JSON.stringify(body, null, 2));
+    const container = await initializeDbContainers(partitionNameKey);
+    await container.item(id, partitionNameKey).replace(body);
   } catch (e) {
-    boom.boomify(e);
+    throw e;
   }
 };
 
-export const heroFindById = async (id: string): Promise<HeroEntity> => {
+export const heroFindById = async (id: string): Promise<IHeroModel> => {
   try {
-    let db = getRepository(HeroEntity);
-    return await db.findOne({ id });
+    const container = await initializeDbContainers(partitionNameKey);
+    const { resource } = await container.item(id).read<IHeroModel>();
+
+    return resource;
   } catch (e) {
-    boom.boomify(e);
+    throw e;
   }
 };

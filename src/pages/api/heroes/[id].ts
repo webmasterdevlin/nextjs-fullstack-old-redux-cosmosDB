@@ -1,14 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 
-import connectDB from "src/middleware/typeOrmDb";
 import {
   heroFindByIdAndRemove,
   heroFindByIdAndUpdate,
 } from "src/services/api/heroService";
 
 const handler = nc()
-  .use(connectDB)
   .delete(async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const id = req.query.id as string;
